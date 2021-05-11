@@ -9,13 +9,13 @@ import ru.netology.nmedia.util.SingleLiveEvent
 import java.io.IOException
 
 private val empty = Post(
-    id = 0,
-    content = "",
-    author = "",
-    authorAvatar = "" ,
-    likedByMe = false,
-    likes = 0,
-    published = ""
+        id = 0,
+        content = "",
+        author = "",
+        authorAvatar = "" ,
+        likedByMe = false,
+        likes = 0,
+        published = ""
 )
 
 class PostViewModel(application: Application) : AndroidViewModel(application) {
