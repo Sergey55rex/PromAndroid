@@ -7,12 +7,15 @@ import retrofit2.Response
 import ru.netology.nmedia.api.PostsApi
 import ru.netology.nmedia.dto.Post
 
+
 class PostRepositoryImpl: PostRepository {
+
     override fun getAllAsync(callback: PostRepository.Callback<List<Post>>) {
         PostsApi.retrofitService.getAll().enqueue(object : Callback<List<Post>> {
             override fun onResponse(call: Call<List<Post>>, response: Response<List<Post>>) {
                 if (!response.isSuccessful) {
                     when (response.code()) {
+
                         in 400..499 -> {
                             callback.onError(RuntimeException(response.message()))
                             return
@@ -49,12 +52,12 @@ class PostRepositoryImpl: PostRepository {
                 }
                 callback.onSuccess(response.body() ?: throw RuntimeException("body is null"))
             }
-
             override fun onFailure(call: Call<Post>, t: Throwable) {
                 callback.onError(RuntimeException(t))
             }
         })
     }
+
 
     override fun removeByIdAsync(id: Long, callback: PostRepository.Callback<Unit>) {
         PostsApi.retrofitService.removeById(id).enqueue(object : Callback<Unit> {
